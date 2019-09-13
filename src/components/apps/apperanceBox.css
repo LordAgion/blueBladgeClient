@@ -1,0 +1,25 @@
+/* .apperanceBox {
+
+    margin: 10px;
+} */
+
+button {
+    margin: 10px;
+    height: 120px;
+    width: 150px;
+    background-color: darkgray;
+    border-color: darkolivegreen;
+    border-width: 2px;
+    border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+#tableid {
+  display: block;
+}
+
+#tableid td {
+  display: inline-block;
+}

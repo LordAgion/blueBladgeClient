@@ -1,0 +1,26 @@
+
+
+  
+  /* Tooltip text */
+  .display .displaytext {
+    visibility: hidden;
+    width: 150px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    margin: 10px;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+
+    
+  }
+  
+
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .display:hover .displaytext {
+    visibility: visible;
+  }

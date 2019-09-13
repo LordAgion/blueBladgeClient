@@ -1,0 +1,6 @@
+.embedBox{
+    position: absolute;
+    background-color: grey;
+    left: 50px;
+    position: fixed;
+}
