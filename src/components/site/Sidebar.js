@@ -38,7 +38,7 @@ const Sidebar = () => (
 
       </ul>
     </div>
-    <div className="sidebar-route" style = {{width: 50}} >
+    <div className="sidebar-route" style = {{width: 100}} >
     <Switch >
     <Route exact path="/"><Spieces /></Route>
   <Route exact path="/Spieces"><Spieces /></Route>
