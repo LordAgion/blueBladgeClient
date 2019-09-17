@@ -11,13 +11,9 @@ import './traits/hover.css'
 
 
 
+const Spieces = (props, id) =>{
 
-const testData = [
-    {spiecesName : 'Vulpecula',
-
-    }]
-
-const Spieces = () =>{
+    // console.log(props)
     const [spiecesName, setSpiecesName] =useState('')
     const [spiecesPlural, setSpiecesPlural] =useState('')
     const [spiecesAdj, setSpiecesAdj] =useState('')
@@ -113,6 +109,99 @@ const Spieces = () =>{
     let [check, setCheck] = useState (false)
     let [check2, setCheck2] = useState (false)
 
+    const postSubmit = (z) =>{
+        z.preventDefault();
+        
+        if(spiecesName == '') {return alert("Tasked Failed, please enter a name")}
+        if(spiecesType == '') {return alert("Tasked Failed, please select a species")}
+        if(planetType == '') {return alert("Tasked Failed, please select a planet")}
+        if(specialTrait == '') {return alert("Tasked Failed, please select major trait")}
+        if(totalTraitPicks < 0 ) {return alert("Tasked Failed, you have picked too many traits")}
+        if(totalTraitPoints < 0 ) {return alert("Tasked Failed, you have picked too many points")}
+        // console.log(props.id)
+        // console.log(props.props)
+
+       fetch('http://localhost:3001/speices/', {
+           method: 'POST',
+           headers: {
+               'Content-Type': 'application/json',
+               'Authorization': props.props
+           },
+           body:JSON.stringify({
+            userId: props.id,   
+            spiecesName: spiecesName,
+            spiecesType: spiecesType,
+            planetType:  planetType,
+            preferedPreferance:  preferedPreferance,
+            isMachine: isMachine,
+            specialTrait:  specialTrait,
+            doubleJointed:  doubleJointed,
+            durable: durable,
+            efficientProcessors:  efficientProcessors,
+            emotionEmulators:  emotionEmulators,
+            enhancedMemory: enhancedMemory,
+            learningAlgorithms:  learningAlgorithms,
+            logicEngines:  logicEngines,
+            massProduced:  massProduced,
+            powerDrills:  powerDrills,
+            recycled: recycled,
+            Bulky:  Bulky,
+            superconductive: superconductive,
+            CustomMade:  CustomMade,
+            HighMaintenance: HighMaintenance,
+            Luxurious:  Luxurious,
+            RepurposedHardware:  RepurposedHardware,
+            Uncanny: Uncanny,
+            domesticProtocols: domesticProtocols,
+            harvesters:  harvesters,
+            loyaltyCircuits:  loyaltyCircuits,
+            propagandaMachines:  propagandaMachines,
+            Adaptive:  Adaptive,
+            ExtremelyAdaptive:  ExtremelyAdaptive,
+            Agrarian: Agrarian,
+            Charismatic: Charismatic,
+            Communal:  Communal,
+            Conformists: Conformists,
+            Conservationist: Conservationist,
+            Enduring:  Enduring,
+            Venerable: Venerable,
+            Industrious: Industrious,
+            Ingenious: Ingenious,
+            Intelligent: Intelligent,
+            NaturalEngineers:  NaturalEngineers,
+            NaturalPhysicists:  NaturalPhysicists,
+            NaturalSociologists: NaturalSociologists,
+            Nomadic: Nomadic,
+            QuickLearners:  QuickLearners,
+            RapidBreeders:  RapidBreeders,
+            Resilient: Resilient,
+            Strong:  Strong,
+            VeryStrong: VeryStrong,
+            Talented: Talented,
+            Thrifty: Thrifty,
+            Traditional:  Traditional,
+            Decadent: Decadent,
+            Deviants:  Deviants,
+            Fleeting:  Fleeting,
+            Nonadaptive:  Nonadaptive,
+            Quarrelsome:  Quarrelsome,
+            Repugnant: Repugnant,
+            Sedentary: Sedentary,
+            SlowBreeders: SlowBreeders,
+            SlowLearners:  SlowLearners,
+            Solitary: Solitary,
+            Wasteful:  Wasteful,
+            Weak:  Weak,
+            Robust:  Robust,
+            Erudite:  Erudite,
+            Fertile:  Fertile,
+            NerveStapled: NerveStapled,
+            Delicious:  Delicious
+           })
+       }
+       ).then(res => res.json())
+   }
+   
     const clearTraits = (v) => {
         
 
@@ -1207,7 +1296,7 @@ const Spieces = () =>{
     
     
         return ( 
-            <div Id= 'bodyDoc'>
+            <div>
             
                 <h4>trait points left : {traitPoints +5}</h4>
                 <h4>trait picks left : {traitPicks +4}</h4>
@@ -1344,9 +1433,9 @@ const Spieces = () =>{
                 
                        
                        
-                       {!Luxurious ? null: <td className="display"><button type="submit" onClick={(e) => moveDownLuxurious( 1, 1, false, null)}> 
+                       {!Luxurious ? null: <td className="display"><button type="submit" onClick={(e) => moveDownLuxurious( 2, 1, false, null)}> 
                         <img alt='' src= "https://stellaris.paradoxwikis.com/images/1/1d/Luxurious.png"></img> <div> Luxurious</div>
-                </button><span className="displaytext"><div>Pop Assembly Cost +20%</div> <div> 1 Trait Point</div></span>
+                </button><span className="displaytext"><div>Pop Assembly Cost +20%</div> <div> 2 Trait Point</div></span>
                        </td>} 
                 
     
@@ -1503,10 +1592,10 @@ const Spieces = () =>{
                      
                        
                        <td className="display">
-                       {Luxurious ? null: <button type="submit" onClick={(e) => moveUpLuxurious( 1, 1, true,"https://stellaris.paradoxwikis.com/images/1/1d/Luxurious.png")}> 
+                       {Luxurious ? null: <button type="submit" onClick={(e) => moveUpLuxurious( 2, 1, true,"https://stellaris.paradoxwikis.com/images/1/1d/Luxurious.png")}> 
                         <img alt='' src= "https://stellaris.paradoxwikis.com/images/1/1d/Luxurious.png"></img> <div> Luxurious</div>
                 </button>} 
-                <span className="displaytext"><div>Pop Assembly Cost +20%</div> <div> 1 Trait Point</div></span>
+                <span className="displaytext"><div>Pop Assembly Cost +20%</div> <div> 2 Trait Point</div></span>
                        </td>
     
                        <td className="display">
@@ -3054,6 +3143,15 @@ const Spieces = () =>{
         <img alt='' src = {Weak == true? "https://stellaris.paradoxwikis.com/images/e/e9/Weak.png": null}></img>
         </div>
         
+
+        <div Id = "postSubmit">
+
+        <button type="submit" onClick={(z) => postSubmit(z)}> <h1>Submit Species</h1>
+            
+        </button>
+
+
+        </div>
         
 
         
@@ -3769,7 +3867,7 @@ const Spieces = () =>{
                 :
                 <div className= "apperanceBox">
                         
-                            <button type="submit" onClick={(e) => majorTraitSubmit("https://stellaris.paradoxwikis.com/images/4/4d/Trait_psionic_species.png", false, preferedPreferance)}> 
+                            <button type="submit" onClick={(e) => majorTraitSubmit("https://stellaris.paradoxwikis.com/images/4/4d/Trait_psionic_species.png", 'false', preferedPreferance)}> 
                             <img alt='' src= "https://stellaris.paradoxwikis.com/images/4/4d/Trait_psionic_species.png"></img> <div></div>Psionic
                             </button>
 
@@ -3777,12 +3875,12 @@ const Spieces = () =>{
                             <img alt='' src= "https://stellaris.paradoxwikis.com/images/4/4d/Trait_psionic_species.png"></img> <div></div>Latent Psionic
                             </button> */}
                             
-                            <button type="submit" onClick={(e) => majorTraitSubmit("https://stellaris.paradoxwikis.com/images/d/d3/Trait_cybernetic.png", false, preferedPreferance)}> 
+                            <button type="submit" onClick={(e) => majorTraitSubmit("https://stellaris.paradoxwikis.com/images/d/d3/Trait_cybernetic.png", 'false', preferedPreferance)}> 
                             <img alt='' src= "https://stellaris.paradoxwikis.com/images/d/d3/Trait_cybernetic.png"></img> <div></div>Cybernetic
                             </button>
 
 
-                            <button type="submit" onClick={(e) => majorTraitSubmit("https://stellaris.paradoxwikis.com/images/thumb/7/7d/Hive-minded.png/29px-Hive-minded.png", false, preferedPreferance)}> 
+                            <button type="submit" onClick={(e) => majorTraitSubmit("https://stellaris.paradoxwikis.com/images/thumb/7/7d/Hive-minded.png/29px-Hive-minded.png", 'false', preferedPreferance)}> 
                             <img alt='' src= "https://stellaris.paradoxwikis.com/images/thumb/7/7d/Hive-minded.png/29px-Hive-minded.png"></img> <div></div>Hive Mind
                             </button>
 

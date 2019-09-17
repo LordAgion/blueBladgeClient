@@ -1,0 +1,25 @@
+.card-like{
+    padding: 1em;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    width: 10vw;
+    margin: 25vh auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#overide {
+    margin: 10px;
+    height: 50px;
+    width: 150px;
+    background-color: rgb(20,34,29);
+    border-color: rgb(79,118,98);
+    border-width: 2px;
+    border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: 'Orbitron';
+  color: rgb(78,117,97);
+}

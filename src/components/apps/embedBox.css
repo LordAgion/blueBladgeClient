@@ -11,6 +11,19 @@
     
 }
 
+.embedBox2{
+    position: absolute ;
+    border-style: solid;
+    border-width: 5px;
+    background-color: rgb(15,22,19);
+    border-color: rgb(79,118,98);
+    /* position: fixed; */
+    width: 20%;
+    height: 18%;
+    color: rgb(79,118,98);
+
+}
+
 
 #spiecesName{
     position: relative ;
@@ -81,4 +94,11 @@
     width: 90%
     
   
+}
+
+#postSubmit{
+    position: absolute;
+    top: 150%;
+    left : 25%
+
 }
