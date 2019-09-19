@@ -4,16 +4,38 @@
   /* Tooltip text */
   .display .displaytext {
     visibility: hidden;
-    width: 150px;
+    width: 20%;
     background-color: black;
     color: white;
     text-align: center;
-    margin: 10px;
+    /* margin: 10px; */
     border-radius: 6px;
    
     /* Position the tooltip text - see examples below! */
     position: absolute;
-    z-index: 1;
+   
+/* 
+  left: 20%; */
+  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+
+    
+  }
+
+  .display2 .displaytext {
+    visibility: hidden;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    /* margin: 10px; */
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+   
+  top:150%;
+  left: 20%;
+  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
 
     
   }
@@ -23,4 +45,17 @@
   /* Show the tooltip text when you mouse over the tooltip container */
   .display:hover .displaytext {
     visibility: visible;
+  }
+
+  .display2:hover .displaytext {
+    visibility: visible;
+  }
+
+  
+  .display2{
+    display: inline-block;
+  }
+
+  .display{
+    display: inline-block;
   }

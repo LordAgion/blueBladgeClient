@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Container, Badge, Button, Input, Label } from 'reactstrap';
 import SpiecesDisplay from  './spiecesDisplay';
 import './embedBox.css'
@@ -8,10 +8,14 @@ import './traits/hover.css'
 //import SyntheticTraits from  './traits/syntheticTraits';
 // import BioTraits from  './traits/bioTraits';
 // import BioEngineeringTraits from  './traits/bioEngineeringTraits';
+import {Redirect} from 'react-router-dom';
 
 
 
 const Spieces = (props, id) =>{
+
+    let [redirect, setRedirect] = useState (true)
+
 
     // console.log(props)
     const [spiecesName, setSpiecesName] =useState('')
@@ -22,7 +26,7 @@ const Spieces = (props, id) =>{
     let [preferedPreferance, setPreferance] = useState('')
     let [isMachine, setMachine] = useState('')
     let [majorTrait, setMajorTrait] = useState('')
-    let [specialTrait, setSpecialTrait] = useState(null)
+    let [specialTrait, setSpecialTrait] = useState(false)
 
     let [traitPoints, setTraitPoints] =useState(0)
     let [traitPicks, setTraitPicks] =useState(0)
@@ -111,11 +115,25 @@ const Spieces = (props, id) =>{
 
     const postSubmit = (z) =>{
         z.preventDefault();
+
+        console.log({
+
+            spiecesName,
+           spiecesType,
+            planetType,
+            preferedPreferance,
+
+           majorTrait,
+
+            isMachine,
+            specialTrait,
+        }
+        )
         
         if(spiecesName == '') {return alert("Tasked Failed, please enter a name")}
         if(spiecesType == '') {return alert("Tasked Failed, please select a species")}
         if(planetType == '') {return alert("Tasked Failed, please select a planet")}
-        if(specialTrait == '') {return alert("Tasked Failed, please select major trait")}
+        // if(specialTrait == '') {return alert("Tasked Failed, please select major trait")}
         if(totalTraitPicks < 0 ) {return alert("Tasked Failed, you have picked too many traits")}
         if(totalTraitPoints < 0 ) {return alert("Tasked Failed, you have picked too many points")}
         // console.log(props.id)
@@ -133,6 +151,9 @@ const Spieces = (props, id) =>{
             spiecesType: spiecesType,
             planetType:  planetType,
             preferedPreferance:  preferedPreferance,
+
+            majorTrait:majorTrait,
+
             isMachine: isMachine,
             specialTrait:  specialTrait,
             doubleJointed:  doubleJointed,
@@ -200,6 +221,9 @@ const Spieces = (props, id) =>{
            })
        }
        ).then(res => res.json())
+       
+       .then(props.tokenHandler(7))
+       
    }
    
     const clearTraits = (v) => {
@@ -3047,17 +3071,25 @@ const Spieces = (props, id) =>{
 
 
     return (
+        <div>
+            {redirect ? <Redirect to ='/createSpecies'/>:null}
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
         <div Id = "bodyDoc">
+
+
         <h1>Species</h1>
         <div className = "embedBox">
             <div Id ='spiecesName'><SpiecesDisplay string={spiecesName}/></div> 
             <div Id ='spiecesBox'>
             <div Id ='spiecesPic'><img alt='' src = {spiecesType}></img></div> 
                 </div> 
-                <div Id = 'planetBox'></div>
+                <div Id = 'planetBox'>
             
             <div Id ='spiecesPlanet'><img alt='' src = {planetType} width='200%' height=' 200%'></img></div> 
-
+</div>
         
         {/* <SpiecesDisplay string={spiecesPlural}/>
         <SpiecesDisplay string={spiecesAdj}/> */}
@@ -3146,7 +3178,7 @@ const Spieces = (props, id) =>{
 
         <div Id = "postSubmit">
 
-        <button type="submit" onClick={(z) => postSubmit(z)}> <h1>Submit Species</h1>
+        <button type="submit" onClick={(z) => postSubmit(z)}> <h3>Submit Species</h3>
             
         </button>
 
@@ -3916,7 +3948,7 @@ const Spieces = (props, id) =>{
                 </div>
 
                             
-        </div>
+        </div></div>
         
 
     )

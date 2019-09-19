@@ -1,12 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import SpiecesList from './components/site/SpeicesList'
 import Spieces from './components/apps/Spieces'
 import Auth from './components/Auth/Auth'
-import {
-  BrowserRouter as Router,
-} from 'react-router-dom';
+
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 const App = () => {
   const [ token, setToken] = useState(undefined) 
@@ -21,23 +21,68 @@ const App = () => {
     setToken(token)
     setid(id)
     applySiteState(1)
-    
-    
-    
+
   }
+
+  let logout = () =>{
+    setToken(undefined)
+    setid(undefined)
+    setSiteState(0)
+
+  }
+
+  let deleteAccount = (e) =>{
+    e.preventDefault()
+    console.log(id)
+ fetch(`http://localhost:3001/speices/all/${id}`, {
+     method: 'DELETE',
+     headers: {
+         'Content-Type': 'application/json'
+     }
+
+ }
+ ).then( fetch(`http://localhost:3001/auth/${id}`, {
+  method: 'DELETE',
+  headers: {
+      'Content-Type': 'application/json'
+  }
+
+}
+))
+ .then(logout())
+}
   return (
     <div>
+      <React.Fragment><Router><Switch>
+        
+        
+        
+      
       <div className="App">
         
         {!token ? <Auth tokenHandler = {storeSessionToken}/>  : null}
-       {siteState == 1 ? <SpiecesList props = {token} id = {id}/>: null} 
-       {siteState == 2 ? <Spieces props = {token} id = {id}/>: null}
+       {siteState == 1 || siteState == 3 || siteState == 5 || siteState == 7  ? <SpiecesList props = {token} id = {id} state={siteState} tokenHandler = {applySiteState}/>: null} 
+       {siteState == 2 ? <Spieces props = {token} id = {id}   tokenHandler = {applySiteState}/>: null}
+
+
+
+       <div></div>
+       
 
        {/* <Spieces props = {token} id = {id}/> */}
+       
+    </div>
+    </Switch></Router></React.Fragment>
+      
+    <div className ="topMenu"> 
+    {token ? <button Id = "overide3"  type="submit" onClick={(e) => logout(e)} >Log Out</button>  : null}
+    {token ? <button Id = "overide5"  type="submit" onClick={(e) => deleteAccount(e)} >Delete Account</button>  : null}
+    <div className = 'logo'>
+    <img src = 'https://www.paradoxplaza.com/on/demandware.static/-/Sites-paradox-catalog/default/dw9e7a8f08/01-product-assets/stellaris/st-base-game-logo-v2.png' alt = '' height = '90 px'></img>
+    </div>
 
     </div>
-      
-
+    
 
       {/* <Router>
         <Sidebar />

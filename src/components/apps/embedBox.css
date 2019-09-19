@@ -30,16 +30,30 @@
     left:45% ;
     top :10%;
 
-    
-
-    
-
-    
 }
+#spiecesName> h4{
+
+    width: 55%;
+    font-size: 1vw
+
+
+
+
+}
+
+
 #spiecesPic{
     position: relative;
     margin: auto;
     width: 90%;
+    height: auto;
+
+}
+#spiecesPic> img{
+
+    
+    height: 9.5vh;
+width: auto;
 
 }
 
@@ -59,10 +73,17 @@
 }
 #spiecesPlanet{
     position: absolute;
-    bottom: 30%;
-    right: 15%;
+    bottom: 3%;
+    right: 50%;
 
     
+}
+#spiecesPlanet> img{
+
+    width: 200%;
+    height: auto;
+
+
 }
 
 #planetBox{
@@ -84,6 +105,7 @@
 #placeTraits{
     position: absolute;
     bottom: 5%;
+
     left:5%;
     letter-spacing: 5px;
     border-style: solid;
@@ -91,10 +113,21 @@
     background-color: rgb(21,19,18);
     border-color: rgb(79,118,98);
     padding: 2px;
-    width: 90%
+    width: 90%;
+    height: 20%;
     
   
 }
+
+#placeTraits> img{
+
+    
+    height: 3vh;
+width: auto;
+display: inline-block;
+
+}
+
 
 #postSubmit{
     position: absolute;
@@ -102,3 +135,14 @@
     left : 25%
 
 }
+
+#deleteButton{
+    position: absolute;
+    top: -9%;
+    left : -5%;
+    height: 5%;
+    width: 5%;
+
+}
+
+
