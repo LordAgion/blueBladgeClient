@@ -24,7 +24,7 @@ const SpiecesList = (props, id) =>{
   
       let fetchSpeices = () => {
 
-    fetch (`http://localhost:3001/speices/${props.id}`,  {
+    fetch (`https://speciescatalog.herokuapp.com/speices/${props.id}`,  {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -42,14 +42,16 @@ const SpiecesList = (props, id) =>{
     }
 
 
-    let applyState = (j) =>{
-        
+    let applyState = (j, h) =>{
+        // console.log ("j", j)
+        // console.log ("h", h)
         
 
 setTimeout(function() {
   fetchSpeices()
-  props.tokenHandler(7)
-}, 10);
+  props.tokenHandler(j)
+  props.applyHoldOver(h)
+}, 100);
         
     }
 
@@ -88,6 +90,7 @@ return(
 
 <div  Id = 'slot'>
 {redirect ? <Redirect to ='/allSpecies'/>:null}
+
         <div>
         <button Id= "overide2" type="submit" onClick={(e) => makeCreate(e,2)} >
             <h1>Create Species</h1></button>

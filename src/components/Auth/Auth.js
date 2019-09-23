@@ -16,10 +16,14 @@ const Auth = (props) => {
     let handleSubmit= (e) => {
         //console.log("handleSumbit hit")
         e.preventDefault();
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
         
+        // console.log (password.length)
+        if (password.length<6) { return alert ('password invalid, password must be at least 6 characters')}
 
-        {fetch('http://localhost:3001/auth/signin', {
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
+
+
+        {fetch('https://speciescatalog.herokuapp.com/auth/signin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -31,9 +35,9 @@ const Auth = (props) => {
         }
         ).then(res => res.json())
         .then(data => {
-            console.log(data)
+            //console.log(data)
             if (data.error== "failed to authenticate") {
-                fetch('http://localhost:3001/auth/signup', {
+                fetch('https://speciescatalog.herokuapp.com/auth/signup', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -46,7 +50,7 @@ const Auth = (props) => {
                 }
                 ).then(res => res.json())
                 .then(data => {
-                    console.log(data)
+                    // console.log(data)
                     
                     
                      return props.tokenHandler(data.sessionToken, data.user.id)

@@ -4,35 +4,107 @@ import { Container, Badge, Button, Input, Label } from 'reactstrap';
 
 const SingleSpeices = (props) =>{
 
-    console.log(props)
+    const [spiecesPlural, setSpiecesPlural] =useState('')
+    const [spiecesAdj, setSpiecesAdj] =useState('')
+    const [homeworld, setHomeworld] =useState('')
+    const [description, setDescription] =useState('')
+
+    //  console.log(props)
     
+
+
+        fetch(`https://speciescatalog.herokuapp.com/speciesPlus/${props.pie.id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            
+            },
+        
+        }
+    )
+
+    .then(res => res.json())
+    .then(data => {
+        // console.log(data)
+        if (data[0]==undefined) { 
+            fetch(`https://speciescatalog.herokuapp.com/speciesPlus/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                
+                }, body:JSON.stringify({
+                    speciesId: `${props.pie.id}`
+                })
+            
+            }
+        )
+        }
+    })
+
+    setTimeout(function() {
+           
+        fetch(`https://speciescatalog.herokuapp.com/speciesPlus/${props.pie.id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': props.props
+            },
+    
+        }
+        ).then(res =>res.json())
+        .then(data => {
+            // console.log(data[0])
+            
+           setSpiecesPlural(data[0].speciePlural)
+            setSpiecesAdj(data[0].specieAdj)
+          setHomeworld(data[0].homeworld)
+            setDescription(data[0].description)
+        })
+       
+      }, 1000)
+    
+
+
+
+
 
    let deleteSpeieces = (e) => {
        e.preventDefault()
-    fetch(`http://localhost:3001/speices/${props.pie.id}`, {
+    fetch(`https://speciescatalog.herokuapp.com/speciesPlus/${props.pie.id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
         },
-        // body:JSON.stringify({
-        //     userName: "",
-        //     email : email,
-        //     password : password
-        // })
-    }
-    ).then(props.tokenHandler(3))
+    }).then(
+        fetch(`https://speciescatalog.herokuapp.com/speices/${props.pie.id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }
+    )
+    ).then(props.tokenHandler(1, null))
+
    }
+
+   
+   let updateSpeices = (e) => {
+    e.preventDefault()
+    
+props.tokenHandler(4, props.pie.id)
+
+}
   
     return (
         <div>
         <div className = "embedBox2" key = {SingleSpeices.index}>
-        <div Id ='spiecesName'> <h4>{props.pie.spiecesName}</h4></div> 
+       <div className = "display3" Id ='spiecesName'> <h4>{props.pie.spiecesName}</h4><span className="displaytext"><div>Adjective: </div><div> {spiecesAdj}</div><div>Plural: </div><div>{spiecesPlural}</div></span></div>
         <div Id ='spiecesBox'>
-        <div Id ='spiecesPic'><img alt='' src = {props.pie.spiecesType}></img> </div> 
+        <div className = "display4" Id ='spiecesPic'><img alt='' src = {props.pie.spiecesType}></img> <span className="displaytext"><div>{description}</div></span> </div> 
             </div> 
             <div Id = 'planetBox'>
         
-        <div Id ='spiecesPlanet'><img alt='' src = {props.pie.planetType} width='200%' height=' 200%'></img> </div> 
+        <div className = "display5" Id ='spiecesPlanet'><img alt='' src = {props.pie.planetType} width='200%' height=' 200%'></img> <span className="displaytext"><div>{homeworld}</div></span> </div> 
 </div>
 
 
@@ -112,6 +184,11 @@ const SingleSpeices = (props) =>{
     <div Id = 'deleteButton'>
     <button Id= "overide4" type="submit" onClick={(e) => deleteSpeieces(e)} >
             <img alt='' src = "https://stellaris.paradoxwikis.com/images/0/04/No.png"></img>
+        </button>
+    </div>
+    <div Id = 'editButton'>
+    <button Id= "overide4" type="submit" onClick={(e) => updateSpeices(e)} >
+            <img alt='' src = "https://stellaris.paradoxwikis.com/images/6/67/Agenda.png"></img>
         </button>
     </div>
     </div>

@@ -139,7 +139,7 @@ const Spieces = (props, id) =>{
         // console.log(props.id)
         // console.log(props.props)
 
-       fetch('http://localhost:3001/speices/', {
+       fetch('https://speciescatalog.herokuapp.com/speices/', {
            method: 'POST',
            headers: {
                'Content-Type': 'application/json',
@@ -220,9 +220,14 @@ const Spieces = (props, id) =>{
             Delicious:  Delicious
            })
        }
-       ).then(res => res.json())
-       
-       .then(props.tokenHandler(7))
+       ).then(res =>res.json())
+            
+       .then(
+        setTimeout(function() {
+           
+            props.tokenHandler(1)
+          }, 100)
+        )
        
    }
    
@@ -3071,12 +3076,12 @@ const Spieces = (props, id) =>{
 
 
     return (
-        <div>
+        <div >
             {redirect ? <Redirect to ='/createSpecies'/>:null}
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
+
+        <div className = "space" ></div>
+        
+
         <div Id = "bodyDoc">
 
 

@@ -1,22 +1,20 @@
 
-
   
-  /* Tooltip text */
+
   .display .displaytext {
     visibility: hidden;
     width: 20%;
     background-color: black;
     color: white;
     text-align: center;
-    /* margin: 10px; */
+
     border-radius: 6px;
-   
-    /* Position the tooltip text - see examples below! */
+    z-index: 99;
+
     position: absolute;
    
-/* 
-  left: 20%; */
-  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+
+  margin-left: -60px; 
 
     
   }
@@ -27,35 +25,123 @@
     background-color: black;
     color: white;
     text-align: center;
-    /* margin: 10px; */
+
     border-radius: 6px;
+    z-index: 99;
    
-    /* Position the tooltip text - see examples below! */
+   
     position: absolute;
    
-  top:150%;
-  left: 20%;
-  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+  top:0%;
+  left: 85%;
+  margin-left: -60px; 
+
+    
+  }
+  .display3 .displaytext {
+    visibility: hidden;
+    width:150%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    
+    border-radius: 6px;
+    z-index: 99;
+   
+    
+    position: absolute;
+   
+  top:50%;
+  left: 15vw;
+  margin-left: -60px; 
+
+    
+  }
+  .display4 .displaytext {
+    visibility: hidden;
+    width: 350%;
+    background-color: black;
+    color: white;
+    text-align: center;
+
+    border-radius: 6px;
+    z-index: 99;
+   
+
+    position: absolute;
+   
+  top:0%;
+  left: 190%;
+  margin-left: -60px; 
+
+    
+  }
+  .display5 .displaytext {
+    visibility: hidden;
+    width: 500%;
+    background-color: black;
+    color: white;
+    text-align: center;
+
+    border-radius: 6px;
+    z-index: 99;
+
+    position: absolute;
+   
+  top:0%;
+  left: 500%;
+  margin-left: -60px;
 
     
   }
   
 
   
-  /* Show the tooltip text when you mouse over the tooltip container */
+
   .display:hover .displaytext {
     visibility: visible;
+    z-index: 99;
   }
 
   .display2:hover .displaytext {
     visibility: visible;
+
+    
   }
+  .display3:hover .displaytext {
+    visibility: visible;
+    
+  }
+  .display4:hover .displaytext {
+    visibility: visible;
+   
+  }
+  .display5:hover .displaytext {
+    visibility: visible;
+    
+  }
+
+
 
   
   .display2{
     display: inline-block;
+    height: 100%;
+  }
+  .display3{
+    display: inline-block;
+    
+  }
+  .display4{
+    display: inline-block;
+    
   }
 
   .display{
     display: inline-block;
+    
+  }
+  .display5{
+    display: inline-block;
+    
   }
